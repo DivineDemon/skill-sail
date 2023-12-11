@@ -16,14 +16,14 @@ const Home = () => {
   return (
     <SafeAreaView style={tw`flex-1 bg-[${COLORS.lightWhite}]`}>
       <Stack.Screen
-        style={tw`bg-red-500`}
+        style={tw`flex-1 bg-[${COLORS.lightWhite}]`}
         options={{
           headerShadowVisible: false,
           headerLeft: () => (
             <ScreenHeaderBtn iconUrl={icons.menu} dimension="60%" />
           ),
           headerRight: () => (
-            <ScreenHeaderBtn iconUrl={icons.profile} dimension="100%" />
+            <ScreenHeaderBtn iconUrl={images.profile} dimension="100%" />
           ),
           headerTitle: "title",
         }}
