@@ -25,11 +25,11 @@ const Home = () => {
           headerRight: () => (
             <ScreenHeaderBtn iconUrl={images.profile} dimension="100%" />
           ),
-          headerTitle: "title",
+          headerTitle: "",
         }}
       />
       <ScrollView showsVerticalScrollIndicator={false}>
-        <View style={tw`flex-1 p-[${SIZES.medium}]`}>
+        <View style={tw`flex-1 p-[${SIZES.medium}px]`}>
           <Welcome />
           <Popularjobs />
           <Nearbyjobs />

@@ -1,15 +1,18 @@
 import tw from "twrnc";
-import React from "react";
 import { View, Text } from "react-native";
-import styles from "./screenheader.style";
+import { COLORS, SIZES } from "../../../constants";
 import { TouchableOpacity, Image } from "react-native";
 
 const ScreenHeaderBtn = ({ iconUrl, dimension, handlePress }) => {
   return (
-    <TouchableOpacity style={styles.btnContainer} onPress={handlePress}>
+    <TouchableOpacity
+      style={tw`w-[40px] h-[40px] bg-[${COLORS.white}] rounded-[${
+        SIZES.small / 1.25
+      }px] flex flex-row items-center justify-center`}
+      onPress={handlePress}>
       <Image
         source={iconUrl}
-        style={tw`w-[${dimension}] h-[${dimension}] object-cover rounded-lg`}
+        style={tw`w-[${dimension}] h-[${dimension}] rounded-lg`}
       />
     </TouchableOpacity>
   );
