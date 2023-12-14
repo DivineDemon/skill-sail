@@ -6,7 +6,7 @@ import {
   Image,
   FlatList,
   TextInput,
-  TouchableOpacity,
+  Pressable,
 } from "react-native";
 import { useRouter } from "expo-router";
 import { icons, COLORS, FONT, SIZES } from "../../../constants";
@@ -55,34 +55,30 @@ const Welcome = () => {
             placeholder="What are you looking for?"
           />
         </View>
-        <TouchableOpacity
+        <Pressable
           style={tw`w-[50px] h-full bg-[${COLORS.tertiary}] rounded-[${SIZES.medium}px] flex items-center justify-center`}
           onPress={() => {}}>
           <Image
             source={icons.search}
             resizeMode="contain"
-            style={[
-              tw`w-[50%] h-[50%]`,
-              {
-                tintColor: COLORS.white,
-              },
-            ]}
+            tintColor={COLORS.white}
+            style={tw`w-[50%] h-[50%]`}
           />
-        </TouchableOpacity>
+        </Pressable>
       </View>
       <View style={tw`w-full mt-[${SIZES.medium}px]`}>
         <FlatList
           scrollEnabled={false}
           data={jobTypes}
           renderItem={({ item }) => (
-            <TouchableOpacity
+            <Pressable
               style={styles.tab(activeJobType, item)}
               onPress={() => {
                 setActiveJobType(item);
                 router.push(`/search/${item}`);
               }}>
               <Text style={styles.tabText(activeJobType, item)}>{item}</Text>
-            </TouchableOpacity>
+            </Pressable>
           )}
           keyExtractor={(item) => item}
           contentContainerStyle={{ columnGap: SIZES.small }}

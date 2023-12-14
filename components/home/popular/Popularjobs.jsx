@@ -1,13 +1,65 @@
-import { View, Text } from 'react-native'
-
-import styles from './popularjobs.style'
+import tw from "twrnc";
+import { useState } from "react";
+import {
+  View,
+  Text,
+  FlatList,
+  Pressable,
+  ActivityIndicator,
+} from "react-native";
+import { useRouter } from "expo-router";
+import useFetch from "../../../hooks/useFetch";
+import { COLORS, FONT, SIZES } from "../../../constants";
+import PopularJobCard from "../../common/cards/popular/PopularJobCard";
 
 const Popularjobs = () => {
-  return (
-    <View>
-      <Text>Popularjobs</Text>
-    </View>
-  )
-}
+  const router = useRouter();
+  const { data, loading, error } = useFetch({
+    endpoint: "search",
+    query: "query=React developer&num_pages=1",
+  });
 
-export default Popularjobs
+  return (
+    <View style={tw`mt-[${SIZES.xLarge}px]`}>
+      <View style={tw`flex flex-row items-center justify-between`}>
+        <Text
+          style={[
+            tw`text-[${SIZES.large}px] text-[${COLORS.primary}]`,
+            {
+              fontFamily: FONT.medium,
+            },
+          ]}>
+          Popular Jobs
+        </Text>
+        <Pressable>
+          <Text
+            style={[
+              tw`text-[${SIZES.medium}px] text-[${COLORS.gray}]`,
+              {
+                fontFamily: FONT.medium,
+              },
+            ]}>
+            Show All
+          </Text>
+        </Pressable>
+      </View>
+      <View style={tw`mt-[${SIZES.medium}]`}>
+        {loading ? (
+          <ActivityIndicator size="large" color={COLORS.primary} />
+        ) : error ? (
+          <Text>Something went wrong</Text>
+        ) : (
+          <FlatList
+            data={data}
+            renderItem={({ item }) => <PopularJobCard item={item} />}
+            keyExtractor={(item) => item.job_id}
+            contentContainerStyle={{ columnGap: SIZES.medium }}
+            horizontal
+          />
+        )}
+      </View>
+    </View>
+  );
+};
+
+export default Popularjobs;
