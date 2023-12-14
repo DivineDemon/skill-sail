@@ -14,10 +14,14 @@ import PopularJobCard from "../../common/cards/popular/PopularJobCard";
 
 const Popularjobs = () => {
   const router = useRouter();
+  const [selectedJob, setSelectedJob] = useState([]);
+
   const { data, loading, error } = useFetch({
     endpoint: "search",
     query: "query=React developer&num_pages=1",
   });
+
+  const handleCardPress = (item) => {};
 
   return (
     <View style={tw`mt-[${SIZES.xLarge}px]`}>
@@ -43,7 +47,7 @@ const Popularjobs = () => {
           </Text>
         </Pressable>
       </View>
-      <View style={tw`mt-[${SIZES.medium}]`}>
+      <View style={tw`mt-[${SIZES.medium}px]`}>
         {loading ? (
           <ActivityIndicator size="large" color={COLORS.primary} />
         ) : error ? (
@@ -51,7 +55,13 @@ const Popularjobs = () => {
         ) : (
           <FlatList
             data={data}
-            renderItem={({ item }) => <PopularJobCard item={item} />}
+            renderItem={({ item }) => (
+              <PopularJobCard
+                item={item}
+                selectedJob={selectedJob}
+                handleCardPress={handleCardPress}
+              />
+            )}
             keyExtractor={(item) => item.job_id}
             contentContainerStyle={{ columnGap: SIZES.medium }}
             horizontal

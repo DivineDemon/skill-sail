@@ -22,9 +22,14 @@ const PopularJobCard = ({ item, selectedJob, handleCardPress }) => {
         />
       </Pressable>
       <Text
-        style={tw`text-[${SIZES.medium}px] font-[${
-          FONT.regular
-        }] text-[#B3AEC6] mt-[${SIZES.small / 1.5}px]`}
+        style={[
+          tw`text-[${SIZES.medium}px] text-[#B3AEC6] mt-[${
+            SIZES.small / 1.5
+          }px]`,
+          {
+            fontFamily: FONT.regular,
+          },
+        ]}
         numberOfLines={1}>
         {item.employer_name}
       </Text>
@@ -33,9 +38,12 @@ const PopularJobCard = ({ item, selectedJob, handleCardPress }) => {
           {item.job_title}
         </Text>
         <Text
-          style={tw`text-[${SIZES.medium - 2}px] font-[${
-            FONT.regular
-          }] text-[#B3AEC6]`}>
+          style={[
+            tw`text-[${SIZES.medium - 2}px] text-[#B3AEC6]`,
+            {
+              fontFamily: FONT.regular,
+            },
+          ]}>
           {item.job_country}
         </Text>
       </View>
