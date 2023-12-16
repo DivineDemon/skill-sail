@@ -1,15 +1,13 @@
 import tw from "twrnc";
-import { View, Text, Pressable, Image } from "react-native";
-
-import styles from "./nearbyjobcard.style";
 import { checkImageURL } from "../../../../utils";
 import { COLORS, FONT, SIZES } from "../../../../constants";
+import { View, Text, Pressable, Image } from "react-native";
 
 const NearbyJobCard = ({ job, handleNavigate }) => {
   return (
     <Pressable
       style={tw`flex-1 flex flex-row items-center justify-between p-[${SIZES.medium}px] rounded-[${SIZES.small}px] bg-white shadow-md shadow-[${COLORS.white}]`}
-      onPress={() => handleNavigate(job)}>
+      onPress={() => handleNavigate(job.job_id)}>
       <Pressable
         style={tw`w-[50px] h-[50px] bg-[${COLORS.white}] rounded-[${SIZES.medium}] flex items-center justify-center`}>
         <Image
